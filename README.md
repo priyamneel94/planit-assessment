@@ -81,6 +81,8 @@ To run automated tests using Jenkins:
 
 You can view build logs and results in Jenkins after each run.
 
+**Note:** The Jenkinsfile is configured to run Playwright tests using the Chromium browser only. If you want to run tests on other browsers, update the Jenkinsfile accordingly.
+
 ## Author
 - Priyam Mukhopadhyay
 
