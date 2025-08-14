@@ -40,7 +40,6 @@ pipeline {
     post {
         always {
             archiveArtifacts artifacts: '**/test-results/**/*.*', allowEmptyArchive: true
-            archiveArtifacts artifacts: 'playwright-report/**/*.*', allowEmptyArchive: true
         }
         failure {
             script {
