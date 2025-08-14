@@ -16,10 +16,12 @@ pipeline {
                 script {
                     if (isUnix()) {
                         sh 'npm install'
-                            sh 'npx playwright install'
+                        sh 'npx playwright install'
+                        sh 'npm install --save-dev allure-playwright allure-commandline'
                     } else {
                         bat 'npm install'
-                            bat 'npx playwright install'
+                        bat 'npx playwright install'
+                        bat 'npm install --save-dev allure-playwright allure-commandline'
                     }
                 }
             }
