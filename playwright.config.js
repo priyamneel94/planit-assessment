@@ -1,50 +1,51 @@
-const { defineConfig, devices } = require('@playwright/test');
+pipeline {
+    agent any
 
-/**
- * @see https://playwright.dev/docs/test-configuration
- */
+    environment {
+        NODE_ENV = 'test'
+    }
 
-module.exports = defineConfig({
-  testDir: './test.specs',
-  timeout: 60 * 1000,
-  expect: {
-    timeout: 10000
-  },
-  fullyParallel: false,
-  workers: 1,
-  reporter: [
-    ['line'],
-    ['allure-playwright']
-  ],
-  use: {
-    actionTimeout: 0,
-    testIdAttribute: 'id',
-    headless: true,
-    acceptDownloads: true,
-    screenshot: 'only-on-failure',
-  },
-  projects: [
-    {
-      name: 'chromium',
-      use: {
-        ...devices['Desktop Chrome'],
-        viewport: { width: 1600, height: 900 },
-        contextOptions: {
-          permissions: ['clipboard-read', 'clipboard-write'],
-          acceptDownloads: true,
-        },
-      },
-    },
-    {
-      name: 'firefox',
-      use: {
-        ...devices['Desktop Firefox'],
-        viewport: { width: 1600, height: 900 },
-        contextOptions: {
-          acceptDownloads: true,
-        },
-      },
-    },
-  ],
-});
+    stages {
+        stage('Checkout') {
+            steps {
+                checkout scm
+            }
+        }
+        stage('Install Dependencies') {
+            steps {
+                script {
+                    if (isUnix()) {
+                        sh 'npm install'
+                        sh 'npx playwright install'
+                    } else {
+                        bat 'npm install'
+                        bat 'npx playwright install'
+                    }
+                }
+            }
+        }
+        stage('Run Tests') {
+            steps {
+                script {
+                    if (isUnix()) {
+                            sh 'npx playwright test --project=chromium'
+                    } else {
+                            bat 'npx playwright test --project=chromium'
+                    }
+                }
+            }
+        }
+    }
 
+    post {
+        always {
+            archiveArtifacts artifacts: '**/test-results/**/*.*', allowEmptyArchive: true
+            archiveArtifacts artifacts: 'playwright-report/**/*.*', allowEmptyArchive: true
+        }
+        failure {
+            script {
+                echo 'Build failed. Please check the logs for details.'
+            }
+        }
+    }
+}
