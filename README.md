@@ -20,8 +20,8 @@ config/           # Environment configuration files
 ### Installation
 1. Clone the repository:
    ```sh
-   git clone <your-repo-url>
-   cd planit-tech-assessment
+   git clone https://github.com/priyamneel94/planit-assessment.git
+   cd planit-assessment
    ```
 2. Install dependencies:
    ```sh
@@ -49,3 +49,4 @@ npx playwright test test.specs/test.spec.js
 
 ## Contact
 For questions or support, please contact [priyam.neel94@gmail.com].
+
