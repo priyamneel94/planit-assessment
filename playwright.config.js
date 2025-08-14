@@ -12,11 +12,7 @@ module.exports = defineConfig({
   },
   fullyParallel: false,
   workers: 1,
-  reporter: [ ['line'],["allure-playwright", {
-    detail: true,
-    outputFolder: "./test.reports/allure-results",
-    suiteTitle: true,
-  },]],
+  reporter: [ ['line'] ],
   use: {
     actionTimeout: 0,
     testIdAttribute: 'id',
