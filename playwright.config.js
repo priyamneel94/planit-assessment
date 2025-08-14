@@ -1,4 +1,3 @@
-// @ts-check
 const { defineConfig, devices } = require('@playwright/test');
 
 /**
@@ -25,29 +24,27 @@ module.exports = defineConfig({
     acceptDownloads: true,
     screenshot: 'only-on-failure',
   },
-
-  /* Configure projects for major browsers */
   projects: [
-    // {
-    //     name: 'firefox',
-    //     use: {
-    //             contextOptions: {
-    //             acceptDownloads: true,
-    //         },
-    //         ...devices['Desktop Firefox'],
-    //         viewport: { width: 1600, height: 900 },
-    //     }
-    // },
     {
-        name: 'Chrome',
-        use: { 
-            contextOptions: {
-                permissions: ['clipboard-read', 'clipboard-write'],
-                acceptDownloads: true,
-            },
-            ...devices['Desktop Chrome'],
-            viewport: { width: 1600, height: 900 },
-        }
+      name: 'chromium',
+      use: {
+        ...devices['Desktop Chrome'],
+        viewport: { width: 1920, height: 1080 },
+        contextOptions: {
+          permissions: ['clipboard-read', 'clipboard-write'],
+          acceptDownloads: true,
+        },
+      },
+    },
+    {
+      name: 'firefox',
+      use: {
+        ...devices['Desktop Firefox'],
+        viewport: { width: 1600, height: 900 },
+        contextOptions: {
+          acceptDownloads: true,
+        },
+      },
     },
   ],
 });
