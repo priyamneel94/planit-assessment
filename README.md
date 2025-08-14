@@ -41,29 +41,24 @@ After installing Node.js, if the `node` command is not recognized in your termin
    ```
 
 ### Running Tests
-To run all tests in headed mode:
+To run all tests in headed mode (by default, tests will run on both Firefox and Chrome):
 ```sh
 npx playwright test test.specs/test.spec.js --headed
 ```
+
+To run tests only on Chrome:
+```sh
+npx playwright test test.specs/test.spec.js --headed --project=chromium
+```
+
+To run tests only on Firefox:
+```sh
+npx playwright test test.specs/test.spec.js --headed --project=firefox
+```
+
 Or in headless mode:
 ```sh
 npx playwright test test.specs/test.spec.js
-```
-
-To run all tests in slow motion for demo purposes:
-```sh
-npx playwright test test.specs/test.spec.js --headed --slow-mo 500
-```
-You can adjust the value (e.g., 500ms) to control the speed.
-
-To run all tests in slow motion and headed mode on Firefox:
-```sh
-npx playwright test test.specs/test.spec.js --headed --slow-mo 500 --project=firefox
-```
-
-To run all tests in slow motion and headed mode on Chrome:
-```sh
-npx playwright test test.specs/test.spec.js --headed --slow-mo 500 --project=chromium
 ```
 
 ## Folder Details
