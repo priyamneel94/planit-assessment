@@ -67,6 +67,20 @@ npx playwright test test.specs/test.spec.js
 - **page.objects/**: Page Object Model classes for Home, Shop, Contact, and Cart pages.
 - **test.specs/**: Main test suite file with Playwright test cases.
 
+## Continuous Integration with Jenkins
+
+To run automated tests using Jenkins:
+
+1. In Jenkins, create a new Pipeline job.
+2. In the job configuration, go to the "Pipeline" section.
+3. Under "Definition," select "Pipeline script from SCM."
+4. For "SCM," choose "Git."
+5. In the "Repository URL" field, enter: https://github.com/priyamneel94/planit-assessment.git
+6. Set the "Script Path" to Jenkinsfile.
+7. Save and run the job.
+
+You can view build logs and results in Jenkins after each run.
+
 ## Author
 - Priyam Mukhopadhyay
 
