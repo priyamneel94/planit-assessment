@@ -20,11 +20,11 @@ test.describe('Test Suite', () => {
     test.beforeAll(async ({ browser }) => {
         console.log('<=== In Before All ===>');
         console.log(`Running test on ${browser.browserType().name()} version: ${browser.version()}`);
+        page = await browser.newPage();
     });
 
-    test.beforeEach(async ({ browser }) => {
+    test.beforeEach(async ({}) => {
         console.log('<=== In Before Each ===>');
-        page = await browser.newPage();
         console.log(`Navigating to base URL: ${envConfig.baseUrl}`);
         await page.goto(envConfig.baseUrl);
     });
