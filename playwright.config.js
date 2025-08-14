@@ -14,8 +14,7 @@ module.exports = defineConfig({
   workers: 1,
     reporter: [
       ['line'],
-      ['html', { outputFolder: 'playwright-report', open: 'never' }]
-    ],
+      ],
   use: {
     actionTimeout: 0,
     testIdAttribute: 'id',
@@ -47,4 +46,5 @@ module.exports = defineConfig({
     },
   ],
 });
+
 
