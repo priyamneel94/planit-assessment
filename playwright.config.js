@@ -12,7 +12,10 @@ module.exports = defineConfig({
   },
   fullyParallel: false,
   workers: 1,
-  reporter: [ ['line'] ],
+  reporter: [
+    ['line'],
+    ['allure-playwright']
+  ],
   use: {
     actionTimeout: 0,
     testIdAttribute: 'id',
