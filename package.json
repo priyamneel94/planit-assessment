@@ -1,0 +1,7 @@
+{
+  "dependencies": {
+    "@playwright/test": "^1.54.2",
+    "allure-playwright": "^3.3.3",
+    "playwright": "^1.54.2"
+  }
+}
