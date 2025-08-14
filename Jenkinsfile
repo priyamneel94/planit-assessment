@@ -40,11 +40,21 @@ pipeline {
     post {
         always {
             archiveArtifacts artifacts: '**/test-results/**/*.*', allowEmptyArchive: true
+            archiveArtifacts artifacts: 'allure-results/**/*.*', allowEmptyArchive: true
+            script {
+                if (isUnix()) {
+                    sh 'npx allure generate allure-results --clean -o allure-report'
+                    sh 'npx allure open allure-report &'
+                } else {
+                    bat 'npx allure generate allure-results --clean -o allure-report'
+                    bat 'start /B npx allure open allure-report'
+                }
+            }
         }
         failure {
-                script {
-                    echo 'Build failed. Please check the logs for details.'
-                }
+            script {
+                echo 'Build failed. Please check the logs for details.'
+            }
         }
     }
 }
