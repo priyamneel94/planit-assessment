@@ -2,7 +2,8 @@ pipeline {
     agent any
 
     environment {
-        NODE_ENV = 'test'
+    NODE_ENV = 'test'
+    PW_TEST_DISABLE_OUTPUT = '1'
     }
 
     stages {
