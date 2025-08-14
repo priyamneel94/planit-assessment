@@ -36,6 +36,7 @@ test.describe('Test Suite', () => {
         await index.contactPage.clickOnSubmit();
         let headerNotification = await index.contactPage.getHeaderNotification();
         expect(headerNotification).toBe(notificationData.ContactPage.errorNotification);
+        console.log(`Verified error notification: ${headerNotification}`);
         let actualMandatoryFieldsErrorNotifications = await index.contactPage.getAllMandatoryFieldsErrorNotifications();
         let expectedMandatoryFieldsErrorNotifications = [
             notificationData.ContactPage.emptyForename,
@@ -43,12 +44,15 @@ test.describe('Test Suite', () => {
             notificationData.ContactPage.emptyMessage
         ];
         expect(actualMandatoryFieldsErrorNotifications).toEqual(expectedMandatoryFieldsErrorNotifications);
+        console.log(`Verified mandatory fields error notifications: ${JSON.stringify(actualMandatoryFieldsErrorNotifications)}`);
         await index.contactPage.enterForename(testSuiteData.testCase1.forename);
         await index.contactPage.enterEmail(testSuiteData.testCase1.email);
         await index.contactPage.enterMessage(testSuiteData.testCase1.message);
         expect(await index.contactPage.mandatoryFieldsErrorNotification.isVisible()).toBe(false);
+        console.log(`Verified no mandatory fields error notification is visible`);
         headerNotification = await index.contactPage.getHeaderNotification();
         expect(headerNotification).toBe(notificationData.ContactPage.successNotification);
+        console.log(`Verified success message: ${headerNotification}`);
         console.log('Test Case 1 completed successfully');
     });
 
@@ -61,10 +65,12 @@ test.describe('Test Suite', () => {
         await index.contactPage.enterMessage(testSuiteData.testCase2.message);
         let headerNotification = await index.contactPage.getHeaderNotification();
         expect(headerNotification).toBe(notificationData.ContactPage.successNotification);
+        console.log(`Verified success message before submission: ${headerNotification}`);
         await index.contactPage.clickOnSubmit();
         await index.contactPage.waitForSendingFeedbackProgressBarToDisappear();
         headerNotification = await index.contactPage.getHeaderSuccessNotification();
         expect(headerNotification).toBe(notificationData.ContactPage.successHeaderNotification(testSuiteData.testCase2.forename));
+        console.log(`Verified success message post submission: ${headerNotification}`);
         console.log('Test Case 2 completed successfully');
     });
 
@@ -83,12 +89,6 @@ test.describe('Test Suite', () => {
         expect(parseFloat(await index.cartPage.getTotalPrice())).toBe(await index.cartPage.getSumOfSubtotalOfAllItems());
         console.log('Verified total price matches the sum of all item subtotals');
         console.log('Test Case 3 completed successfully');
-    });
-
-    test.afterEach(async () => {
-        console.log('<=== In After Each ===>');
-        const index = new Index(page);
-        await index.homePage.goToHomePage();
     });
 
     test.afterAll(async () => {
