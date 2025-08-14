@@ -48,5 +48,6 @@ npx playwright test test.specs/test.spec.js
 - Priyam Mukhopadhyay
 
 ## Contact
-For questions or support, please contact [priyam.neel94@gmail.com].
+For questions or support, please contact priyam.neel94@gmail.com
+
 
